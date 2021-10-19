@@ -1,0 +1,106 @@
+body {
+	width:920px;
+	margin:auto;
+	font-family:'Cairo',sans-serif;
+	}
+
+a.fill-div {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color:black;
+    text-align:center;
+    vertical-align:middle;
+    line-height:300px;
+    font-size:40pt;
+    font-weight:700;
+}
+.tuile {
+	display:inline-block;
+	width:300px;
+	height:300px;
+	margin:20px
+	}
+.connexion-prof{
+	background-color:red
+	}
+
+.connexion-eleve{
+	background-color:green
+	}
+
+.tuile-classes {
+	background-color:orange
+	}
+
+.tuile-questions {
+	background-color:yellow
+	}
+
+.pied-de-page { display:block;
+		width:100%;
+		background-color: #ffe0b3;
+		text-align:center}
+.entete { display:block;
+		width:100%;
+		background-color: #ffe0b3;
+		text-align:right}
+.entete a{ 
+	text-decoration:none;
+	color:black;
+	margin-left:10px;
+	margin-right:10px
+	}
+
+.formulaireconnexion {
+	border:solid;
+	width:50%;
+	margin:10px}
+
+.erreur{
+	color:red;
+	}
+
+.material-icons {
+  vertical-align: middle !important;
+  padding-bottom: 3px;
+}
+
+.ajouter {
+	display:block;
+	width:100%;
+	text-align:right;
+	}
+.ajouter a {
+	color:black
+	}
+
+
+.tableau {
+	margin-top:10px;
+	padding:0pt;
+	border-spacing:0pt
+	}
+.tableau tr:hover{
+	background-color :#ffe0b3
+	}
+
+.tableau td{
+	}
+
+
+.bouton {
+	border:0pt;
+	background-color:transparent;
+	cursor:pointer
+	}
+
+
+div[id^="preview"]{
+	width:100%;
+	border:solid #eee 1pt;
+	}
+div[id^="preview"] p {
+	margin:0pt;
+	}
