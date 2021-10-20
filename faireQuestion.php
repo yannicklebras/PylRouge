@@ -3,7 +3,7 @@ include("entete.php");
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/idea.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.2.0/markdown-it.min.js">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.2.0/markdown-it.min.js"></script>
 <script src="https://cdn.jsdelivr.net/pyodide/v0.18.1/full/pyodide.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -60,7 +60,7 @@ $prerempli = $question['prerempli'];
 
 
 <h3><?php echo $titre;?></h3>
-<form method=post>
+<form method=post id=formulaire action="validQuestion.php">
 <div id="enonce">
 <?php echo $enonce; ?>
 </div>
@@ -75,8 +75,11 @@ while ($cas = $casdetest->fetch_assoc()) {
 }
 ?>
 </div>
-
+</div>
 <textarea id=editor1><?php echo $prerempli; ?></textarea>
+
+<center><button id=tester>tester sur les exemples</button><button id=valider>Valider le script</button></center>
+<div class="termPython" id="divtest"></div>
 </form>
 
 
@@ -103,6 +106,79 @@ md = new window.markdownit({
                 });
 $("#enonce").html(md.render($('#enonce').html()));
 //MathJax.typeset();
+
+async function main() {
+        let pyodide = await loadPyodide({
+          indexURL: "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/",
+        });
+        return pyodide;
+      }
+      let pyodideReadyPromise = main();
+
+  // Pyodide is now ready to use...
+
+async function evaluatePython(code,cas,attendu,div) {
+        let pyodide = await pyodideReadyPromise;
+        try {
+          var sortie = pyodide.runPython(code+"\n"+cas);
+	  if (sortie != attendu) {
+		div.append(">>> "+cas+"<br/>"+sortie+"<br/><span style='color:red'># attendu : "+attendu+"</span><br/>")
+	  } else {	
+          //input.val(output);
+	  	div.append(">>> "+cas+"<br/>"+sortie+"<br/><span style='color:green'># attendu : "+attendu+"</span><br/>")
+          }
+	} catch (err) {
+          div.append(">>> "+cas+"<br/><pre class='messageErreur'>"+(err)+"</pre><br/># attendu : "+attendu+"<br/>");
+        }
+      }
+
+async function evaluatePythonFull(code,cas,attendu,json) {
+        let pyodide = await pyodideReadyPromise;
+        try {
+          var sortie = pyodide.runPython(code+"\n"+cas);
+		return sortie;
+        } catch (err) {
+		return err;
+        }
+      }
+
+
+castest = new Map();
+<?php
+$casdetest->data_seek(0);
+while ($cas=$casdetest->fetch_assoc()) {
+	echo("castest.set(\"".$mysqli->real_escape_string($cas["entree"])."\",\"".$mysqli->real_escape_string($cas["sortie"])."\");\n");
+}
+?>
+
+$("#tester").click(function() {
+	$("#divtest").html("");
+	for  (let [entree,sortie] of castest) {
+		evaluatePython(editor1.getValue(),entree,sortie,$("#divtest"));
+	}
+	return false;
+});
+
+
+$("#valider").click(function(){
+	$.ajax({
+		method:"POST",
+		url:"testsQuestion.php",
+		dataType:"json",
+		data:{idQuestion:"<?php echo $idQuestion;?>"},
+		success:async function(a) {
+			cass = a;
+			for (cas of cass["cas"]) {
+				cas["resultat"]= await evaluatePythonFull(editor1.getValue(),cas["entree"],cas["sortie"],cas);
+				$("#formulaire").append("<input type=hidden name=resultat[] value="+cas["resultat"]+"><input type=hidden name=resultatid[] value="+cas["id"]+">");
+			}
+			$("#formulaire").submit();
+		}
+	});	
+	return false;
+
+});
+
 </script>
 <?php
 include("piedepage.php");
