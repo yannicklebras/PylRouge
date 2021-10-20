@@ -3,6 +3,9 @@ body {
 	margin:auto;
 	font-family:'Cairo',sans-serif;
 	}
+#principal {
+	min-height:400px
+	}
 
 a.fill-div {
     display: block;
@@ -100,7 +103,35 @@ a.fill-div {
 div[id^="preview"]{
 	width:100%;
 	border:solid #eee 1pt;
+	min-height:100px;
+	line-height:1.1;
+	font-family:Courier New;
+	font-size:10pt;
 	}
 div[id^="preview"] p {
 	margin:0pt;
 	}
+
+.stdout {
+	width:477px;
+	display:inline-block
+	}
+
+.messageErreur {
+	color:red;
+	font-size:6pt
+	}
+
+.castest:hover{
+	background-color:#ffe0b3
+	}
+
+
+.termPython {
+	background-color:black;
+	color:white;
+	font-family:Courier New;
+	font-weight:bold;
+	margin-top:10px;
+	margin-bottom:10px;
+}

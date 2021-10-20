@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<TITLE>Fil Rouge Python</TITLE>
+<TITLE>pylrouge - Fil Rouge Python</TITLE>
 <link rel="stylesheet" href="style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,9 +18,11 @@
 <?php 
 if (isset($_SESSION["prof_login"])) {
 	echo "<div class='entete'>
-		<a href='modifCompte.php'><span class='material-icons' style='vertical-align: text-top;'>perm_identity</span>".$_SESSION['nom']." ".$_SESSION["prenom"]."</a>
+		<div style='display:inline-block;width:90px'><img width='90px' src=logo.png></div>
+		<div style='display:inline-block;width:820px;text-align:right'><a href='modifCompte.php'><span class='material-icons' style='vertical-align: text-top;'>perm_identity</span>".$_SESSION['nom']." ".$_SESSION["prenom"]."</a>
 		<a href='pdg_prof.php'><span class='material-icons' style='vertical-align: text-top;'>home</span></a>
-		<a href='connect_prof.php'><span class='material-icons' style='vertical-align: text-top;'>logout</span></a>
-		</div> ";
+		<a href='connect_prof.php'><span class='material-icons' style='vertical-align: text-top;'>logout</span></a></div>
+		</div><div id=principal> ";
+
 }
 ?>
