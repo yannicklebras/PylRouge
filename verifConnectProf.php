@@ -5,7 +5,7 @@ if (!isset($_SESSION["token"])) {
 	exit;
 	}
 $token = $_SESSION["token"];
-$requete = "SELECT * FROM TOKEN WHERE jeton='$token'";
+$requete = "SELECT * FROM TOKEN WHERE jeton='$token' and enseignant>-1";
 $connexion = $mysqli->query($requete);
 if ($connexion->num_rows<1) {
 	$_SESSION["erreur"]="Erreur de connexion";

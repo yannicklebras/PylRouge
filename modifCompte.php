@@ -1,11 +1,14 @@
 <?php 
 include("entete.php"); 
 include("connect.php");
-include("verifConnectProf.php"); 
-
+if ($_SESSION["statut"]=="prof") 
+	include("verifConnectProf.php"); 
+elseif ($_SESSION["statut"]=="etudiant")
+	include("verifConnectEtud.php");
 $nom=$_SESSION["nom"];
-$prenom=$_SESSION["prenom"];?>
-
+$prenom=$_SESSION["prenom"];
+//print_r($_SESSION);
+?>
 Modification de votre compte : 
 <div><form name="modifCompteProf" action="majCompte.php" method="POST">
 nom : <input type=text name=chNom value="<?php echo($nom);?>"><br/>

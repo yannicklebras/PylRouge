@@ -35,7 +35,12 @@ if ($questions->num_rows>0) {
 	echo("</table>");
 }
 ?>
-<form action=actionQuestion.php metod=post class=ajouter><input type=hidden name=ajout value=1><button type=submit class=bouton><span class=ajouter>Ajouter une question <span class='material-icons'>add_circle_outline</span></button></span></form>
+<form action=actionQuestion.php metod=post class=ajouter>
+	<input type=hidden name=ajout value=1>
+	<button type=submit class=bouton>
+		<span class=ajouter>Ajouter une question <span class='material-icons'>add_circle_outline</span></span>
+	</button>
+</form>
 </div>
 </center>
 <?php include("piedepage.php");?>		 

@@ -2,7 +2,10 @@
 session_start();
 header('Content-Type: application/json');
 include("connect.php");
-include("verifConnectProf.php");
+if (isset($_SESSION["prof_login"])) 
+	include("verifConnectProf.php");
+elseif (isset($_SESSION["etud_login"]))
+	include("verifConnectEtud.php");
 $idQuestion = $mysqli->real_escape_string($_POST["idQuestion"]);
 $requeteCas = "SELECT * FROM CASTEST WHERE question=$idQuestion";
 $castest = $mysqli->query($requeteCas);

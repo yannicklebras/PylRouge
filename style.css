@@ -34,12 +34,23 @@ a.fill-div {
 	}
 
 .tuile-classes {
-	background-color:orange
+	background-color:white;
+	border:solid 10pt #ffe0b3;
+	}
+.tuile-classes:hover{
+	background-color:#ffe0b3;
+	border:solid 10pt white;
+	}
+.tuile-questions:hover{
+	background-color:#ffe0b3;
+	border:solid 10pt white;
 	}
 
 .tuile-questions {
-	background-color:yellow
+	background-color:white;
+	border:solid 10pt #ffe0b3;
 	}
+
 
 .pied-de-page { display:block;
 		width:100%;
@@ -93,12 +104,37 @@ a.fill-div {
 	}
 
 
+.tableauFR {
+	margin-top:10px;
+	padding:2pt;
+	border-spacing:0pt;
+	text-align:center
+	}
+
+.tableauFR th, .tableauFR td {
+	border:1pt solid #ffe0b3;
+	padding-left:10pt;
+	padding-right:10pt;
+	}
+
+.tableauFR th {
+	background-color:#ffe0b3
+	}
+
+.tableauFR tr:hover{
+	background-color :#ffe0b3
+	}
+
+
 .bouton {
 	border:0pt;
 	background-color:transparent;
 	cursor:pointer
 	}
 
+.bouton:disabled {
+	cursor:not-allowed
+	}
 
 div[id^="preview"]{
 	width:100%;
@@ -135,3 +171,8 @@ div[id^="preview"] p {
 	margin-top:10px;
 	margin-bottom:10px;
 }
+
+.lien {
+	text-decoration:none;
+	color:black
+	}

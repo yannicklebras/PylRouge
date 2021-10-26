@@ -40,8 +40,14 @@ window.MathJax = {
 
 
 <?php
+//print_r($_SESSION);
 include("connect.php");
-include("verifConnectProf.php");
+if (isset($_SESSION["prof_login"])) 
+	include("verifConnectProf.php");
+elseif (isset($_SESSION["etud_login"])) 
+	include("verifConnectEtud.php");
+else 
+	header("Location: index.php");
 $idQuestion = $_SESSION["idQuestion"];
 $statut = $_SESSION["statut"];
 
@@ -76,7 +82,7 @@ while ($cas = $casdetest->fetch_assoc()) {
 ?>
 </div>
 </div>
-<textarea id=editor1><?php echo $prerempli; ?></textarea>
+<textarea id=editor1 name=code><?php echo $prerempli; ?></textarea>
 
 <center><button id=tester>tester sur les exemples</button><button id=valider>Valider le script</button></center>
 <div class="termPython" id="divtest"></div>
