@@ -1,5 +1,6 @@
 # PylRouge
 
+## Présentation
 Organisation de fils rouges Python pour suivi .
 J'utilise personnellement l'outils Coderunner de Moodle, mais il m'a semblé intéressant d'avoir un outil autonome. 
 
@@ -15,3 +16,21 @@ L'utilisation de cet outil est complémentaire du travail en cours et en TP et n
 
 
 L'exécution des scripts python est rendue possible par Pyodide [https://github.com/pyodide/pyodide], l'édition du code est réalisée grâce aux outils Codemirror [https://codemirror.net/] et l'affichage MarkDown est réalisé par markdown-it [https://github.com/markdown-it/markdown-it]
+
+
+## Installation
+
+Copier l'ensemble des fichiers à la racine du site.
+Créer une base de données avec un utilisateur et un mot de passe et modifier le fichier `connect.php`.
+Importer la structure de la base de données  (fichier `filrouge.sql`).
+Créer un compte prof : 
+```SQL
+INSERT INTO ENSEIGNANTS(nom,prenom,login,mdp) VALUES ("votre_nom","votre_prenom","votre_login",SHA4("votre_mdp",256));
+```
+
+Il me semble que cela doit suffire à démarrer le site. 
+
+
+## Utilisation
+Quelques copies d'écran
+

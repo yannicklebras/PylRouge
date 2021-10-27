@@ -2,7 +2,7 @@
 session_start();
 include("connect.php");
 include("verifConnectProf.php");
-print_r($_POST);
+//print_r($_POST);
 $reponses = $_POST["idReponses"];
 $etats = $_POST["etats"];
 $commentaires = $_POST["commentaires"];
@@ -14,7 +14,7 @@ foreach($reponses as $i=>$idReponse) {
 	//echo("idreponse $i: $idReponse<br>");
 	if ($idReponse>=0){ 
 		print_r($maj_prepare);
-		echo("$etat - $commentaire - $idReponse");
+//		echo("$etat - $commentaire - $idReponse");
 		$maj_prepare->bind_param('isi',$etat,$commentaire,$idReponse);
 		$maj_prepare->execute();
 	}
