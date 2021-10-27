@@ -41,8 +41,7 @@ $correction = $donneesQuestion["correction"];
 $retour = $donneesQuestion["retour"];
 $codeEtud = $reponse["code"];
 
-$requete3 = "SELECT * FROM CASTEST 
-		JOIN DETAILSREPONSES ON DETAILSREPONSES.castest = CASTEST.id
+$requete3 = "SELECT * FROM DETAILSREPONSES 
 		WHERE fil=$idFil AND etudiant=$id ORDER BY type";
 $reponsesTests = $mysqli->query($requete3);
 

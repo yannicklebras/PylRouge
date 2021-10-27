@@ -1,5 +1,4 @@
-<?php if (!isset($_SESSION)) { session_start(); }
- 
+<?php if (!isset($_SESSION)) { session_start(); } 
 if (!isset($horsConnexion) && !isset($_SESSION["prof_login"]) && !isset($_SESSION["etud_login"]))
 	{
 	header("Location: index.php");

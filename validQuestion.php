@@ -28,7 +28,7 @@ foreach ($tests as $i=>$idTest) {
 	$entree = $test["entree"];
 	$sortie = $test["sortie"];
 	$resultat = $resultats[$i];
-	$insertions .= "$resultat),";
+	$insertions .= "'$resultat','$entree','$sortie','$type'),";
 	if ($resultat==$sortie){ 
 		$couleur="green";
 		$nbOK+=1;
@@ -45,14 +45,14 @@ echo("</div>");
 echo("<div>Nombre de tests réussis : $nbOK/".($nbOK+$nbFail)." (dont ".($nbOK+$nbFail-$nbPublic)." tests cachés)</div>");
 if ($statut=="prof") {
 	echo("<a class=lien href='voirQuestions.php'><span class='material-icons'>keyboard_return</span>Retourner aux questions</a>");
-} elseif ($statut=="etud") {
+} elseif ($statut=="etudiant") {
 	if  ($nbFail==0)  
 		$etat = 1;
 	else
 		$etat = 0;
 	$requete1 = "INSERT INTO REPONSES(filrouge,eleve,date,etat,code) VALUES ($idFil,$id,now(),$etat,'$code')";
-	$requete2 = "INSERT INTO DETAILSREPONSES(fil,etudiant,castest,resultat) VALUES ".substr($insertions,0,-1);
-//	echo($requete2);
+	$requete2 = "INSERT INTO DETAILSREPONSES(fil,etudiant,castest,resultat,entree,sortie,type) VALUES ".substr($insertions,0,-1);
+//	echo($requete1);
 	echo("Résultats enregistrés, vous pourrez voir le détail et la correction sur la page d'accueil");
 	$mysqli->query($requete1);
 	$mysqli->query($requete2);

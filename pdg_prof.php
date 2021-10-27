@@ -1,5 +1,4 @@
-<?php 
-include("entete.php"); ?>
+<?php include("entete.php"); ?>
 <?php 
 include("connect.php");
 include("verifConnectProf.php");
