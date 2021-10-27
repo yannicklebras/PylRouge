@@ -25,13 +25,14 @@ a.fill-div {
 	height:300px;
 	margin:20px
 	}
-.connexion-prof{
-	background-color:red
-	}
-
-.connexion-eleve{
-	background-color:green
-	}
+.tuile-accueil {
+        background-color:white;
+        border:solid 10pt #ffe0b3;
+        }
+.tuile-accueil:hover{
+        background-color:#ffe0b3;
+        border:solid 10pt white;
+        }
 
 .tuile-classes {
 	background-color:white;
