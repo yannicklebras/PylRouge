@@ -13,8 +13,10 @@ $eleves = $mysqli->query($requete);
 
 echo("<center><div>");
 echo("<p style='color:red'>");
-echo $_SESSION["erreur"];
-unset($_SESSION["erreur"]);
+if (isset($_SESSION["erreur"])) {
+	echo $_SESSION["erreur"];
+	unset($_SESSION["erreur"]);
+	}
 echo("</p>");
 if ($eleves->num_rows>0) {
         echo("<table class=tableau>");

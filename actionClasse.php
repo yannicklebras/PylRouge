@@ -83,7 +83,20 @@ if (isset($_POST['ValEditer'])) {
 	header("Location: voirClasses.php");
 }
 
+if (isset($_POST["filRouge"])) {
+	$idClasse = $mysqli->real_escape_string($_POST["idClasse"]);
+	$_SESSION["idClasse"] = $idClasse;
+	header("Location: filRouge.php");
+	exit();
+}
 
+
+if (isset($_POST["resultats"])) {
+	$idClasse = $mysqli->real_escape_string($_POST["idClasse"]);
+	$_SESSION["idClasse"] = $idClasse;
+	header("Location: voirResultats.php");
+	exit();
+}
 
 ?>
 

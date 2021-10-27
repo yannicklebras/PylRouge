@@ -176,3 +176,23 @@ div[id^="preview"] p {
 	text-decoration:none;
 	color:black
 	}
+
+
+.etape {
+	display:inline-block
+	}
+
+
+.codeAff {
+	width:300px;
+}
+
+.nomprenom{
+	width:150px;
+}
+
+
+.tabresult td {
+	vertical-align:top
+	}
+	

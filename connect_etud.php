@@ -2,11 +2,12 @@
 session_start();
 if (isset($_SESSION["erreur"])) $message=("<span class='erreur'>".$_SESSION["erreur"]."</span>");
 session_destroy();
+unset($_SESSION);
 require("entete.php");?>
 <center>
 <h1>Connexion Etudiant</h1>
 <div class="formulaireconnexion">
-	<?php echo $message;?>
+	<?php if (isset($message)) echo $message;?>
 	<form action="identification.php" method=POST>
 		identifiant:<br/>
 		<input class="login" type=text name=idEtud><br/>

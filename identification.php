@@ -1,8 +1,8 @@
 <?php
 session_start();
 include("connect.php");
-echo("connexion");
-print_r($_POST);
+//echo("connexion");
+//print_r($_POST);
 //exit;
 
 if (isset($_POST["idProf"])) {
@@ -11,7 +11,7 @@ if (isset($_POST["idProf"])) {
 	$utilisateur = $mysqli->query("SELECT * FROM ENSEIGNANTS WHERE login='$login' AND mdp=SHA2('$mdp',256)");
 	if ($utilisateur->num_rows<1) {
 		$_SESSION["erreur"]="erreur de connection";
-		print_r($_SESSION);
+//		print_r($_SESSION);
 		header('Location: connect_prof.php');
 		exit;
 	} 
@@ -22,11 +22,12 @@ if (isset($_POST["idProf"])) {
 	$token = openssl_random_pseudo_bytes(16);
 	$token = bin2hex($token);
 	$mysqli->query("INSERT INTO TOKEN(enseignant,date,jeton) VALUES($id,now(),'$token')");
-	echo("INSERT INTO TOKEN(enseignant,date,jeton) VALUES($id,now(),'$token')");
+//	echo("INSERT INTO TOKEN(enseignant,date,jeton) VALUES($id,now(),'$token')");
 	$_SESSION["prof_login"]=$login;
 	$_SESSION["token"]=$token;
 	$_SESSION["nom"]=$nom;
 	$_SESSION["prenom"] = $prenom;
+	$_SESSION["statut"] = "prof";
 	header('Location: pdg_prof.php');
 }
 if(isset($_POST["idEtud"])) {
@@ -42,7 +43,7 @@ if(isset($_POST["idEtud"])) {
 	$utilisateur = $mysqli->query("SELECT * FROM ELEVES WHERE identifiant='$login' AND mdp=SHA2('$mdp',256)$classe");
 	if ($utilisateur->num_rows<1) {
 		$_SESSION["erreur"]="erreur de connection";
-		print_r($_SESSION);
+		//print_r($_SESSION);
 		header('Location: connect_etud.php');
 		exit;
 	}
@@ -65,6 +66,7 @@ if(isset($_POST["idEtud"])) {
 	$_SESSION["nom"]=$nom;
 	$_SESSION["prenom"]=$prenom;
 	$_SESSION["idClasse"]=$idClasse;
+	$_SESSION["statut"]="etudiant";
 	header('Location: pdg_etud.php');
 }
 ?>

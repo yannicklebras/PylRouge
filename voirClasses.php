@@ -30,12 +30,12 @@ if ($classes->num_rows>0) {
 				<input type=hidden value=$idClasse name='idClasse'>
 				<button type=submit class='bouton'><span class='material-icons'>edit</span></button>
 			  </form>
-			  <form action=filRouge.php style='display:inline' method=post>
+			  <form action=actionClasse.php style='display:inline' method=post>
 				<input type=hidden value='filRouge' name='filRouge'>
 				<input type=hidden value=$idClasse name='idClasse'>
 				<button type=submit class='bouton'><span class='material-icons' style='color:red'>cable</span></button>
 			  </form>
-			  <form action=voirResultats.php style='display:inline' method=post>
+			  <form action=actionClasse.php style='display:inline' method=post>
 				<input type=hidden value='resultats' name='resultats'>
 				<input type=hidden value=$idClasse name='idClasse'>
 				<button type=submit class='bouton'><span class='material-icons'>grading</span></button>

@@ -6,8 +6,11 @@ if (isset($_SESSION["prof_login"]))
 elseif (isset($_SESSION["etud_login"]))
 	include("verifConnectEtud.php");
 $tests = $_POST["resultatid"];
-$idFil = $_SESSION["idFil"];
-print_r($_SESSION);
+if (isset($_SESSION["idFil"]))
+	$idFil = $_SESSION["idFil"];
+else 
+	$idFil=-1;
+//print_r($_SESSION);
 unset($_SESSION["idFil"]);
 $resultats = $_POST["resultat"];
 $statut=$_SESSION["statut"];

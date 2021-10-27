@@ -1,9 +1,9 @@
 <?php
 session_start();
 include("connect.php");
-echo("bonjour");
-print_r($_SESSION);
-print_r($_POST);
+//echo("bonjour");
+//print_r($_SESSION);
+//print_r($_POST);
 if (isset($_SESSION["prof_login"])) {
 	include("verifConnectProf.php");
 	$chNom = $_POST["chNom"];
@@ -16,13 +16,13 @@ if (isset($_SESSION["prof_login"])) {
 	$_SESSION["nom"]=$chNom;
 	$_SESSION["prenom"]=$chPrenom;
 	$mysqli->query($requete);
-	echo($requete);
-	echo("ok");
+//	echo($requete);
+//	echo("ok");
 	header("Location: pdg_prof.php");
 }
 if (isset($_SESSION["etud_login"])) {
-	echo("bonjou");
-	print_r($_SESSION);	
+//	echo("bonjou");
+//	print_r($_SESSION);	
 	include("verifConnectEtud.php");
 	$chNom = $_POST["chNom"];
 	$chPrenom = $_POST["chPrenom"];
@@ -34,9 +34,8 @@ if (isset($_SESSION["etud_login"])) {
 	$_SESSION["nom"]=$chNom;
 	$_SESSION["prenom"]=$chPrenom;
 	$mysqli->query($requete);
-	echo($requete);
-	echo("ok");
+//	echo($requete);
+//	echo("ok");
 	header("Location: pdg_etud.php");
 }
 ?>
-

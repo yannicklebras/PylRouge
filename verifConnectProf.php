@@ -15,6 +15,5 @@ if ($connexion->num_rows<1) {
 $id = $connexion->fetch_assoc()["enseignant"];
 $nom = $_SESSION["nom"];
 $prenom = $_SESSION["prenom"];
-$statut = "prof";
+$_SESSION["statut"] = "prof";
 ?>
-

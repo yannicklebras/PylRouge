@@ -11,10 +11,11 @@ include("connect.php");
 include("verifConnectProf.php");
 if (isset($_SESSION["idClasse"])) {
 	$idClasse=$_SESSION["idClasse"];
-//	unset($_SESSION["idClasse"]);
+	unset($_SESSION["idClasse"]);
 } else {
 	$idClasse=$mysqli->real_escape_string($_POST["idClasse"]);
 }
+//$_SESSION["idClasse"]=$idClasse;
 ?>
 <center>
 Attention, vous ne pouvez pas intervenir sur une question du fil rouge à laquelle un élève a déjà répondu.
@@ -39,9 +40,12 @@ while ($etape=$etapes->fetch_assoc()) {
 	$datedebut= date_format(date_create($etape["datedebut"]),"d/m/Y H:i");
 	$datefin= date_format(date_create($etape["datefin"]),"d/m/Y H:i");
 	$idFil = $etape["idFilrouge"];
-	$requete = "SELECT * FROM REPONSES WHERE filrouge=$idFil";
-	$nbDejaFaits = $mysqli->query($requete)->num_rows;
-	$bloquer = ($nbDejaFaits>0)?" disabled":"";
+	$bloquer="";
+	if (!is_null($idFil)) {
+	    $requete = "SELECT * FROM REPONSES WHERE filrouge=$idFil";
+	    $nbDejaFaits = $mysqli->query($requete)->num_rows;
+	    $bloquer = ($nbDejaFaits>0)?" disabled":"";
+	}
 	echo("<tr><td> <input type=hidden name=idQuestion[] value=$idQuestion>
 			<input type=hidden name=idFil[] value=$idFil>
 		 $titre</td>
