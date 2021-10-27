@@ -125,7 +125,7 @@ async function main() {
 async function evaluatePython(code,cas,attendu,div) {
         let pyodide = await pyodideReadyPromise;
         try {
-          var sortie = pyodide.runPython(code+"\n"+cas);
+          var sortie = String(pyodide.runPython(code+"\n"+cas));
 	  if (sortie != attendu) {
 		div.append(">>> "+cas+"<br/>"+sortie+"<br/><span style='color:red'># attendu : "+attendu+"</span><br/>")
 	  } else {	
