@@ -25,7 +25,7 @@ Créer une base de données avec un utilisateur et un mot de passe et modifier l
 Importer la structure de la base de données  (fichier `filrouge.sql`).
 Créer un compte prof : 
 ```SQL
-INSERT INTO ENSEIGNANTS(nom,prenom,login,mdp) VALUES ("votre_nom","votre_prenom","votre_login",SHA4("votre_mdp",256));
+INSERT INTO ENSEIGNANTS(nom,prenom,login,mdp) VALUES ("votre_nom","votre_prenom","votre_login",SHA2("votre_mdp",256));
 ```
 
 Il me semble que cela doit suffire à démarrer le site. 
