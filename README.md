@@ -43,4 +43,6 @@ Quelques copies d'écran
 ![Capture d’écran de 2021-10-27 11-09-15](https://user-images.githubusercontent.com/48787735/139036733-94c53f9b-7d59-4d46-9e6a-1ced96f2bc38.png)
 
 
-
+## Problèmes connus
+- gestion de la connexion/deconnexion à revoir sur certains points
+- Problème de garbage collecting sous Firefox qui empèche parfois pyodide de se lancer. Dans ce cas il suffit d'ouvrir un nouvel onglet
