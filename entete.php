@@ -1,4 +1,11 @@
-<?php if (!isset($_SESSION)) { session_start(); }?>
+<?php if (!isset($_SESSION)) { session_start(); }
+ 
+if (!isset($horsConnexion) && !isset($_SESSION["prof_login"]) && !isset($_SESSION["etud_login"]))
+	{
+	header("Location: index.php");
+	exit;
+	}
+?>
 <!DOCTYPE html>
 
 <html>
@@ -23,17 +30,17 @@ date_default_timezone_set('Europe/Paris');
 if (isset($_SESSION["prof_login"])) {
 	echo "<div class='entete'>
 		<div style='display:inline-block;width:90px'><img width='90px' src=logo.png></div>
-		<div style='display:inline-block;width:820px;text-align:right'><a href='modifCompte.php'><span class='material-icons' style='vertical-align: text-top;'>perm_identity</span>".$_SESSION['nom']." ".$_SESSION["prenom"]."</a>
-		<a href='pdg_prof.php'><span class='material-icons' style='vertical-align: text-top;'>home</span></a>
-		<a href='connect_prof.php'><span class='material-icons' style='vertical-align: text-top;'>logout</span></a></div>
+		<div style='display:inline-block;width:820px;text-align:right'><a href='modifCompte.php' title='editer le compte'><span class='material-icons' style='vertical-align: text-top;'>perm_identity</span>".$_SESSION['nom']." ".$_SESSION["prenom"]."</a>
+		<a href='pdg_prof.php' title='page principale'><span class='material-icons' style='vertical-align: text-top;'>home</span></a>
+		<a href='connect_prof.php' title='déconnexion'><span class='material-icons' style='vertical-align: text-top;'>logout</span></a></div>
 		</div><div id=principal> ";
 
 }elseif (isset($_SESSION["etud_login"])) {
 	echo "<div class='entete'>
 		<div style='display:inline-block;width:90px'><img width='90px' src=logo.png></div>
-		<div style='display:inline-block;width:820px;text-align:right'><a href='modifCompte.php'><span class='material-icons' style='vertical-align: text-top;'>perm_identity</span>".$_SESSION['nom']." ".$_SESSION["prenom"]."</a>
-		<a href='pdg_etud.php'><span class='material-icons' style='vertical-align: text-top;'>home</span></a>
-		<a href='connect_etud.php'><span class='material-icons' style='vertical-align: text-top;'>logout</span></a></div>
+		<div style='display:inline-block;width:820px;text-align:right'><a href='modifCompte.php' title='éditer le compte'><span class='material-icons' style='vertical-align: text-top;'>perm_identity</span>".$_SESSION['nom']." ".$_SESSION["prenom"]."</a>
+		<a href='pdg_etud.php' title='page principale'><span class='material-icons' style='vertical-align: text-top;'>home</span></a>
+		<a href='connect_etud.php' title='déconnexion'><span class='material-icons' style='vertical-align: text-top;'>logout</span></a></div>
 		</div><div id=principal> ";
 
 }else{

@@ -1,5 +1,6 @@
 <?php
 session_start();
+$horsConnexion=1;
 if (isset($_SESSION["erreur"])) $message=("<span class='erreur'>".$_SESSION["erreur"]."</span>");
 session_destroy();
 unset($_SESSION);

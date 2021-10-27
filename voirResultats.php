@@ -1,11 +1,13 @@
 <?php
+session_start();
+include("connect.php");
+include("verifConnectProf.php");
 include("entete.php");
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/idea.min.css" integrity="sha512-Rfc5zQIp95eozfMCdS3B4MItUxU8orNje/t1OEhf7XwIk0DTCuMH2LG0NIgP8UGYK9L39WfUNI1c4IsM5yY/PA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.2.0/markdown-it.min.js" integrity="sha512-cTQeM/op796Fp1ZUxfech8gSMLT/HvrXMkRGdGZGQnbwuq/obG0UtcL04eByVa99qJik7WlnlQOr5/Fw5B36aw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <?php
-include("connect.php");
 $idClasse = $_SESSION["idClasse"];
 $requete="SELECT FILSROUGES.id as idFil,datedebut,datefin,QUESTIONS.titre as titre,IF(datefin<now(),1,IF(datedebut<=now(),2,0)) as passe 
 	FROM FILSROUGES JOIN QUESTIONS ON FILSROUGES.question=QUESTIONS.id WHERE classe=$idClasse ORDER BY datefin";
@@ -46,7 +48,7 @@ while ($etape=$etapes->fetch_assoc()) {
 		$selectv = "";
 		$selectnv = "";
 		if (is_null($etat)) 
-			$etatVis="nom traité<input type=hidden name=etats[]>";
+			$etatVis="non traité<input type=hidden name=etats[]>";
 		else {
 			(is_null($etat)?$selectnull=" selected":(($etat==1)?$selectv=" selected":$selectnv=" selected"));
 			$etatVis = "<SELECT NAME=etats[]><option value=0 $selectnv>non validé</option><option value=1 $selectv>validé</option></select>";

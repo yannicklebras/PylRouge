@@ -13,7 +13,7 @@ foreach($reponses as $i=>$idReponse) {
 	$commentaire = $mysqli->real_escape_string($commentaires[$i]);
 	//echo("idreponse $i: $idReponse<br>");
 	if ($idReponse>=0){ 
-		print_r($maj_prepare);
+//		print_r($maj_prepare);
 //		echo("$etat - $commentaire - $idReponse");
 		$maj_prepare->bind_param('isi',$etat,$commentaire,$idReponse);
 		$maj_prepare->execute();

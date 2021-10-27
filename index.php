@@ -2,6 +2,7 @@
 session_start();
 session_destroy();
 unset($_SESSION);
+$horsConnexion=1;
 include("entete.php");?>
 
 <center>
