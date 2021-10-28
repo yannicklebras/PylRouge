@@ -1,4 +1,4 @@
-# Attention la structure de la base de données a été changée depuis les première versions. Il faut donc la mettre à jour.
+# Attention la structure de la base de données a été changée depuis les premières versions. Il faut donc la mettre à jour.
 
 # PylRouge
 
