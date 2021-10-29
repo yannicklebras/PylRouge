@@ -239,7 +239,7 @@ async function evaluatePython(code,input,div) {
           var sortie = pyodide.runPython(code);
 	  //input.val(output);
 	  input.val(sortie);
-	  alert(sortie);
+	  //alert(sortie);
 	  div.html(String(sortie));
         } catch (err) {
           input.val(err);

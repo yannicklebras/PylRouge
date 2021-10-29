@@ -21,7 +21,7 @@ if (isset($_POST["csvEleves"])) {
 			if ($nbIdentique>0) {
 				$message = $message."<br/>Erreur lors de l'ajout de ".$eleveDetails[0]." ".$eleveDetails[1]." (".$eleveDetails[2].")";
 			} else {
-				echo($requete);
+				//echo($requete);
 				$mysqli->query($requete);
 				$nbAjout=$nbAjout+1;
 			}

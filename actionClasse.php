@@ -21,7 +21,7 @@ if (isset($_GET["ValAjout"])) {
 		header('Location: actionClasse.php?ajout');
 	} else {
 		$requete = "INSERT INTO CLASSES(nom,enseignant) VALUES('".$mysqli->real_escape_string($_POST["nom"])."',$id)";
-		echo($requete);
+		//echo($requete);
 		$mysqli->query($requete);
 		header("Location: voirClasses.php");
 	}
