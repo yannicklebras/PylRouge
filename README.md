@@ -33,6 +33,9 @@ INSERT INTO ENSEIGNANTS(nom,prenom,login,mdp) VALUES ("votre_nom","votre_prenom"
 Il me semble que cela doit suffire à démarrer le site. 
 
 ## Utilisation
+
+Pour la rédaction des énoncés et commentaires, l'utilisation du langage Markdown et Latex (entre $...$) est possible. 
+
 Quelques copies d'écran
 
 ![Capture d’écran de 2021-10-27 11-11-30](https://user-images.githubusercontent.com/48787735/139036711-b2b5e0f7-813e-4214-a8c8-d48529f1d8e6.png)![Capture d’écran de 2021-10-27 11-11-16](https://user-images.githubusercontent.com/48787735/139036716-ff693c27-ddb5-4221-8b99-c2934eadd6fa.png)
