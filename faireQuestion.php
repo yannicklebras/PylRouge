@@ -175,7 +175,7 @@ $("#valider").click(function(){
 			cass = a;
 			for (cas of cass["cas"]) {
 				cas["resultat"]= await evaluatePythonFull(editor1.getValue(),cas["entree"],cas["sortie"],cas);
-				$("#formulaire").append("<input type=hidden name=resultat[] value='"+cas["resultat"]+"'><input type=hidden name=resultatid[] value='"+cas["id"]+"'>");
+				$("#formulaire").append("<textarea name=resultat[] style='display:none'>"+cas["resultat"]+"</textarea><input type=hidden name=resultatid[] value='"+cas["id"]+"'>");
 			}
 			$("#formulaire").submit();
 		}

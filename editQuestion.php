@@ -117,10 +117,10 @@ if($idQuestion==-1) {
                                         <OPTION value=2>Validation Visible</OPTION>
                                         <OPTION value=3>Validation cachée</OPTION>
                                  </SELECT>
-                                 <input type=text value='' name='casEntree[]'>
+                                 <textarea name='casEntree[]'></textarea>
                                 <button type=button class=executer>Exec.</button>
                                 &gt;&gt;&gt;
-                                 <input type=hidden value='' name='casSortie[]'></div>
+                                 <textarea name='casSortie[]' style='display:none'></textarea></div>
                                 <div class='stdout' id='stdout[]'></div>
                                 <div style='display:inline-block;width:33px'><button type=button class='bouton suppr'><span class='material-icons'>delete</span></button></div> 
                                 </div>");
@@ -132,10 +132,10 @@ while ($cas = $castest->fetch_assoc())  {
 					<OPTION value=2".(($type==2)?" SELECTED":"").">Validation Visible</OPTION>
 					<OPTION value=3".(($type==3)?" SELECTED":"").">Validation cachée</OPTION>
 				 </SELECT>
-				 <input type=text value='".($cas['entree'])."' name='casEntree[]'>
+				 <textarea name='casEntree[]' style='box-shadow:none;resize:none;white-space:pre;overflow-wrap:normal'>".($cas['entree'])."</textarea>
 				<button type=button class=executer>Exec.</button>
 				&gt;&gt;&gt;
-				 <input type=hidden value='".($cas['sortie'])."' name='casSortie[]'></div>
+				 <textarea name='casSortie[]' style='display:none'>".($cas['sortie'])."</textarea></div>
 				<div class='stdout' id='stdout[]'>".($cas['sortie'])."</div>
 				<div style='display:inline-block;width:33px'><button type=button class='bouton suppr'><span class='material-icons'>delete</span></button></div> 
 				</div>");
@@ -248,11 +248,11 @@ async function evaluatePython(code,input,div) {
       }
 
 $("body").on('click','.executer',function(){
-	input = $(this).parent().find("input").eq(1);
+	input = $(this).parent().find("textarea").eq(1);
 	div = $(this).parent().parent().find("div[id^='stdout']");
 	var code = editor2.getValue();
 	code = code + "\n";
-	code = code + $(this).parent().find("input").eq(0).val();
+	code = code + $(this).parent().find("textarea").eq(0).val();
 	evaluatePython(code,input,div);
 	return false	
 });

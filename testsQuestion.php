@@ -9,13 +9,14 @@ elseif (isset($_SESSION["etud_login"]))
 $idQuestion = $mysqli->real_escape_string($_POST["idQuestion"]);
 $requeteCas = "SELECT * FROM CASTEST WHERE question=$idQuestion";
 $castest = $mysqli->query($requeteCas);
-$json = "";
+$liste  = array();
 while ($cas=$castest->fetch_assoc()) {
-	$entree = $mysqli->real_escape_string($cas["entree"]);
-	$sortie = $mysqli->real_escape_string($cas["sortie"]);
-	$json .= "{\"id\":\"".$cas["id"]."\",\"type\":\"".$cas["type"]."\",\"entree\":\"$entree\",\"sortie\":\"$sortie\",\"resultat\":0},";
+	$entree = $cas["entree"];
+	$sortie = $cas["sortie"];
+	$json_array = array("id"=>$cas["id"],"type"=>$cas["type"],"entree"=>$entree,"sortie"=>$sortie,"resultat"=>0);
+	array_push($liste,$json_array);
 }
-$json = "{\"cas\":[".substr($json,0,-1)."]}";
-echo($json);
+$json = array("cas"=>$liste);
+echo(json_encode($json));
 ?>
 
