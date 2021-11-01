@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : jeu. 28 oct. 2021 à 07:35
+-- Généré le : lun. 01 nov. 2021 à 21:31
 -- Version du serveur :  8.0.27-0ubuntu0.21.04.1
 -- Version de PHP : 8.0.12
 
@@ -31,10 +31,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `CASTEST` (
   `id` int NOT NULL,
   `question` int NOT NULL,
-  `entree` text NOT NULL,
-  `sortie` text NOT NULL,
+  `entree` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sortie` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -44,9 +44,9 @@ CREATE TABLE `CASTEST` (
 
 CREATE TABLE `CLASSES` (
   `id` int NOT NULL,
-  `nom` varchar(255) NOT NULL,
+  `nom` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `enseignant` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -59,11 +59,11 @@ CREATE TABLE `DETAILSREPONSES` (
   `fil` int NOT NULL,
   `etudiant` int NOT NULL,
   `castest` int NOT NULL,
-  `resultat` text NOT NULL,
-  `entree` text NOT NULL,
-  `sortie` text NOT NULL,
+  `resultat` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `entree` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sortie` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -73,12 +73,12 @@ CREATE TABLE `DETAILSREPONSES` (
 
 CREATE TABLE `ELEVES` (
   `id` int NOT NULL,
-  `nom` text NOT NULL,
-  `prenom` text NOT NULL,
-  `identifiant` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `mdp` varchar(255) NOT NULL,
+  `nom` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prenom` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `identifiant` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mdp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `classe` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -88,11 +88,11 @@ CREATE TABLE `ELEVES` (
 
 CREATE TABLE `ENSEIGNANTS` (
   `id` int NOT NULL,
-  `nom` text NOT NULL,
-  `prenom` text NOT NULL,
-  `login` text NOT NULL,
-  `mdp` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `nom` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prenom` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `login` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mdp` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -106,7 +106,7 @@ CREATE TABLE `FILSROUGES` (
   `datedebut` datetime NOT NULL,
   `datefin` datetime NOT NULL,
   `classe` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -116,14 +116,14 @@ CREATE TABLE `FILSROUGES` (
 
 CREATE TABLE `QUESTIONS` (
   `id` int NOT NULL,
-  `titre` varchar(255) NOT NULL,
-  `enonce` text NOT NULL,
-  `prerempli` text NOT NULL,
-  `correction` text NOT NULL,
+  `titre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `enonce` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prerempli` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `correction` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `niveau` int NOT NULL,
-  `retour` text NOT NULL,
+  `retour` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `enseignant` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -137,9 +137,9 @@ CREATE TABLE `REPONSES` (
   `eleve` int NOT NULL,
   `date` datetime NOT NULL,
   `etat` int NOT NULL DEFAULT '0',
-  `code` text NOT NULL,
-  `commentaire` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `code` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `commentaire` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -152,8 +152,8 @@ CREATE TABLE `TOKEN` (
   `enseignant` int NOT NULL DEFAULT '-1',
   `etudiant` int NOT NULL DEFAULT '-1',
   `date` date NOT NULL,
-  `jeton` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `jeton` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Index pour les tables déchargées

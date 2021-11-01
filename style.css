@@ -197,3 +197,11 @@ div[id^="preview"] p {
 	vertical-align:top
 	}
 	
+.inputPython {
+	height:1.2em;
+	vertical-align:middle;
+	overflow-x:hidden;
+	resize:none;
+	box-shadow:none;
+	white-space:nowrap;
+	}

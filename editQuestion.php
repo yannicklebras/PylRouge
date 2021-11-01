@@ -117,7 +117,7 @@ if($idQuestion==-1) {
                                         <OPTION value=2>Validation Visible</OPTION>
                                         <OPTION value=3>Validation cachée</OPTION>
                                  </SELECT>
-                                 <textarea name='casEntree[]'></textarea>
+                                 <textarea name='casEntree[]' class='inputPython></textarea>
                                 <button type=button class=executer>Exec.</button>
                                 &gt;&gt;&gt;
                                  <textarea name='casSortie[]' style='display:none'></textarea></div>
@@ -132,7 +132,7 @@ while ($cas = $castest->fetch_assoc())  {
 					<OPTION value=2".(($type==2)?" SELECTED":"").">Validation Visible</OPTION>
 					<OPTION value=3".(($type==3)?" SELECTED":"").">Validation cachée</OPTION>
 				 </SELECT>
-				 <textarea name='casEntree[]' style='box-shadow:none;resize:none;white-space:pre;overflow-wrap:normal'>".($cas['entree'])."</textarea>
+				 <textarea name='casEntree[]' class='inputPython'>".($cas['entree'])."</textarea>
 				<button type=button class=executer>Exec.</button>
 				&gt;&gt;&gt;
 				 <textarea name='casSortie[]' style='display:none'>".($cas['sortie'])."</textarea></div>
