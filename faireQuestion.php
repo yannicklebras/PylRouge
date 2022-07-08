@@ -85,6 +85,7 @@ while ($cas = $casdetest->fetch_assoc()) {
 
 <center><button id=tester>tester sur les exemples</button><button id=valider>Valider le script</button></center>
 <div class="termPython" id="divtest"></div>
+<textarea id="stdoutCache" style="display:block">test</textarea>
 </form>
 
 
@@ -112,9 +113,18 @@ md = new window.markdownit({
 $("#enonce").html(md.render($('#enonce').html()));
 //MathJax.typeset();
 
+function retourStdout(text) {
+	//alert(text);
+	//alert(document.getElementById("stdoutCache").value);
+	//console.log( "Python stdout: %o", text );
+	oldValue = document.getElementById("stdoutCache").value;
+	document.getElementById("stdoutCache").value=(oldValue+text+"\n");
+}
+
 async function main() {
         let pyodide = await loadPyodide({
           indexURL: "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/",
+          stdout: retourStdout
         });
         return pyodide;
       }
@@ -123,9 +133,14 @@ async function main() {
   // Pyodide is now ready to use...
 
 async function evaluatePython(code,cas,attendu,div) {
-        let pyodide = await pyodideReadyPromise;
+	stdout = $(document).find("textarea[id='stdoutCache']");
+	//alert(stdout.val());
+	stdout.val("");
+	let pyodide = await pyodideReadyPromise;
         try {
-          var sortie = String(pyodide.runPython(code+"\n"+cas));
+          var sortie = await pyodide.runPython(code+"\n"+cas);
+          sortie = stdout.val();
+          alert(`${sortie} ${sortie.length} -- ${attendu} ${attendu.length}`);
 	  if (sortie != attendu) {
 		div.append(">>> "+cas+"<br/>"+sortie+"<br/><span style='color:red'># attendu : "+attendu+"</span><br/>")
 	  } else {	
@@ -135,12 +150,16 @@ async function evaluatePython(code,cas,attendu,div) {
 	} catch (err) {
           div.append(">>> "+cas+"<br/><pre class='messageErreur'>"+(err)+"</pre><br/># attendu : "+attendu+"<br/>");
         }
+       return false
       }
 
 async function evaluatePythonFull(code,cas,attendu,json) {
-        let pyodide = await pyodideReadyPromise;
+        stdout = $(document).find("textarea[id='stdoutCache']");
+	stdout.val("");
+	let pyodide = await pyodideReadyPromise;
         try {
-          var sortie = pyodide.runPython(code+"\n"+cas);
+          var sortie = await pyodide.runPython(code+"\n"+cas);
+          sortie = stdout.val();
 		return sortie;
         } catch (err) {
 		return err;
@@ -148,20 +167,28 @@ async function evaluatePythonFull(code,cas,attendu,json) {
       }
 
 
+async function testLoop (castest) {
+	$("#divtest").html("");
+	for  (let [entree,sortie] of castest) {
+		alert(entree+">>>"+sortie);
+		await evaluatePython(editor1.getValue(),entree,sortie,$("#divtest"));
+	}
+	return false;
+}
+
 castest = new Map();
 <?php
 $casdetest->data_seek(0);
 while ($cas=$casdetest->fetch_assoc()) {
-	echo("castest.set(\"".$mysqli->real_escape_string($cas["entree"])."\",\"".$mysqli->real_escape_string($cas["sortie"])."\");\n");
+	echo("castest.set(\"".$mysqli->real_escape_string($cas["entree"])."\",\"".str_replace("\\r","",$mysqli->real_escape_string($cas["sortie"]))."\");\n");
 }
 ?>
 
+
+
 $("#tester").click(function() {
-	$("#divtest").html("");
-	for  (let [entree,sortie] of castest) {
-		evaluatePython(editor1.getValue(),entree,sortie,$("#divtest"));
-	}
-	return false;
+	testLoop(castest);
+	return false
 });
 
 

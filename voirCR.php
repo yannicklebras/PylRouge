@@ -73,6 +73,7 @@ if ($estPasse==0)
 ?>
 <script language=javascript>
 md = new window.markdownit({
+			html : false,
                         highlight: function (str, lang) {
                                 if (lang && hljs.getLanguage(lang)) {
                                         try {
@@ -85,7 +86,7 @@ md = new window.markdownit({
 
 $(document).ready(function (){
 	$("#tableauCodes").find("td").each(function() {
-		$(this).html(md.render($(this).html()));
+		$(this).html(md.render($(this).text()));
 		});
 	$("#enonce").html(md.render($("#enonceFantome").find("textarea").val()));
 	$("#retour").html(md.render($("#retourFantome").find("textarea").val()));

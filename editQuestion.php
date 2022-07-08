@@ -107,6 +107,7 @@ if (isset($_SESSION["editQuestion"])) {
 				   <div id=preview3 style="border-width:1pt;border-style:solid;display:none;"></div></td></tr>
 </table>
 <div id="casDeTest">
+Pour tester le résultat d'une fonction, il faut utiliser <code>print(fonction(a,b,...))</code>.<br/>
 <?php 
 $requete = "SELECT * FROM CASTEST WHERE question = $idQuestion ORDER BY type";
 $castest = $mysqli->query($requete);
@@ -117,7 +118,7 @@ if($idQuestion==-1) {
                                         <OPTION value=2>Validation Visible</OPTION>
                                         <OPTION value=3>Validation cachée</OPTION>
                                  </SELECT>
-                                 <textarea name='casEntree[]' class='inputPython></textarea>
+                                 <textarea name='casEntree[]' class='inputPython'></textarea>
                                 <button type=button class=executer>Exec.</button>
                                 &gt;&gt;&gt;
                                  <textarea name='casSortie[]' style='display:none'></textarea></div>
@@ -153,7 +154,8 @@ while ($cas = $castest->fetch_assoc())  {
 
 
 
-
+<textarea id=stdoutCache style="display:none">test</textarea>
+<input type=hidden id=stderr>
 <script language=javascript>
   var editor0 = CodeMirror.fromTextArea(document.getElementById("editor0"), {
         mode: 'markdown',
@@ -223,32 +225,48 @@ $("#preview3").dblclick(function(){$("#preview3").hide();$("#texte3").show();});
 
 </script>
 <script>
+function retourStdout(text) {
+	//alert(text);
+	//alert(document.getElementById("stdoutCache").value);
+	//console.log( "Python stdout: %o", text );
+	oldValue = document.getElementById("stdoutCache").value;
+	document.getElementById("stdoutCache").value=(oldValue+text+"\n");
+}
+
+
 async function main() {
         let pyodide = await loadPyodide({
           indexURL: "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/",
+          stdout: retourStdout
         });
         return pyodide;
       }
       let pyodideReadyPromise = main();
 
   // Pyodide is now ready to use...
+  
 
 async function evaluatePython(code,input,div) {
         let pyodide = await pyodideReadyPromise;
         try {
-          var sortie = pyodide.runPython(code);
+          document.getElementById("stdoutCache").value="";
+          var sortie = await pyodide.runPythonAsync(code);
 	  //input.val(output);
-	  input.val(sortie);
+	  //input.text(sortie);
 	  //alert(sortie);
-	  div.html(String(sortie));
+	  //div.html($(".stdout").val());
+	  div.html(document.getElementById("stdoutCache").value);
+	  input.text(document.getElementById("stdoutCache").value);
+	  //div.html(String(sortie));
         } catch (err) {
-          input.val(err);
+          input.text(err);
 	  div.html("<pre class='messageErreur'>"+(err)+"</pre>");
         }
       }
 
 $("body").on('click','.executer',function(){
 	input = $(this).parent().find("textarea").eq(1);
+	//div = $(this).parent().parent().find("div[id^='stdout']");
 	div = $(this).parent().parent().find("div[id^='stdout']");
 	var code = editor2.getValue();
 	code = code + "\n";
